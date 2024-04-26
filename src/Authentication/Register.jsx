@@ -4,8 +4,11 @@ import { FaFacebook } from "react-icons/fa";
 import { AuthContext } from "./AuthProvider/AuthProvider";
 import { toast } from "react-toastify";
 import { Navigate, useNavigate } from "react-router-dom";
+import { getAuth, signOut, updateProfile } from "firebase/auth";
+
 
 const Register = () => {
+  const auth = getAuth()
   const {createUser, setUser, user} = useContext(AuthContext);
   const [passwordError, setPasswordError] = useState("");
   const [confirmPassError, setConfirmPassError] = useState("");
@@ -40,9 +43,13 @@ const Register = () => {
     .then(result =>{
       setUser(result.user)
       toast.success("Acount created successfully")
-      navigate("/login")
       form.reset()
-      
+      updateProfile(result.user,{
+        displayName: name,
+        photoURL: photoUrl
+      })
+      signOut(getAuth());
+      navigate("/login") 
     })
     .catch(error => {
       console.log(error);
@@ -63,14 +70,14 @@ const Register = () => {
       </h1>
       <hr className="w-5/12 mx-auto my-4" />
       <div className=" flex flex-col justify-center items-center">
-        <div className="w-2/5 bg-gray-100 p-6 rounded-xl">
+        <div className="w-2/5 bg-gray-100  p-6 rounded-xl">
         <form
           onSubmit={handleRegister}
           
         >
           <label
             htmlFor="name"
-            className="relative block overflow-hidden border-b border-gray-200 bg-transparent pt-3 mb-6 focus-within:border-blue-600"
+            className="relative block overflow-hidden  border-b border-gray-200 bg-transparent pt-3 mb-6 focus-within:border-blue-600"
           >
             <input
               required
@@ -78,7 +85,7 @@ const Register = () => {
               type="text"
               id="name"
               placeholder="Email"
-              className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+              className="peer h-8 w-full border-none bg-transparent rounded-md text-black p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
             />
 
             <span className="absolute start-0 top-2 -translate-y-1/2 text-xs text-gray-700 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
@@ -95,7 +102,7 @@ const Register = () => {
               type="email"
               id="email"
               placeholder="Email"
-              className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+              className="peer h-8 w-full text-black rounded-md border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
             />
 
             <span className="absolute start-0 top-2 -translate-y-1/2 text-xs text-gray-700 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
@@ -112,7 +119,7 @@ const Register = () => {
               type="text"
               id="photoUrl"
               placeholder="Email"
-              className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+              className="peer h-8 w-full text-black rounded-md border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
             />
 
             <span className="absolute start-0 top-2 -translate-y-1/2 text-xs text-gray-700 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
@@ -129,7 +136,7 @@ const Register = () => {
               type="password"
               id="password"
               placeholder="Email"
-              className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+              className="peer text-black h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
             />
 
             <span className="absolute start-0 top-2 -translate-y-1/2 text-xs text-gray-700 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
@@ -149,7 +156,7 @@ const Register = () => {
               type="password"
               id="confirmPassword"
               placeholder="Email"
-              className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+              className="peer text-black h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
             />
 
             <span className="absolute start-0 top-2 -translate-y-1/2 text-xs text-gray-700 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
