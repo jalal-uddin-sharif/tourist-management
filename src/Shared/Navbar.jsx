@@ -24,7 +24,7 @@ const Navbar = () => {
         <NavLink
           to="/"
           className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ?  "focus:text-primary focus:outline-none focus:bg-transparent active:bg-transparent text-primary"
+            isPending ? "pending" : isActive ?  "focus:text-primary focus:outline-none focus:hover:bg-transparent focus:bg-transparent active:bg-transparent text-primary"
             : ""
           }
         >
