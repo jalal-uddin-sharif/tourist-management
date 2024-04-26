@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const [theme, setTheme] = useState(localStorage.getItem("theme"));
@@ -14,9 +15,57 @@ const Navbar = () => {
 
   useEffect(() => {
     const localTheme = localStorage.getItem("theme");
-    document.querySelector('html').setAttribute('data-theme', localTheme)
+    document.querySelector("html").setAttribute("data-theme", localTheme);
   }, [theme]);
 
+  const Navlinks = (
+    <>
+      <li>
+        <NavLink
+          to="/"
+          className={({ isActive, isPending }) =>
+            isPending ? "pending" : isActive ?  "focus:text-primary focus:outline-none focus:bg-transparent active:bg-transparent text-primary"
+            : ""
+          }
+        >
+          Home
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/all-tourists-spot"
+          className={({ isActive, isPending }) =>
+            isPending ? "pending" : isActive ?  "focus:text-primary focus:outline-none focus:bg-transparent active:bg-transparent text-primary"
+            : ""
+          }
+        >
+          All Tourists Spot
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/add-tourists-spot"
+          className={({ isActive, isPending }) =>
+            isPending ? "pending" : isActive ?  "focus:text-primary focus:outline-none focus:bg-transparent active:bg-transparent text-primary"
+            : ""
+          }
+        >
+          Add Tourists Spot
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
+          to="/my-list"
+          className={({ isActive, isPending }) =>
+            isPending ? "pending" : isActive ?  "focus:text-primary focus:outline-none focus:bg-transparent active:bg-transparent text-primary"
+            : ""
+          }
+        >
+          My List
+        </NavLink>
+      </li>
+    </>
+  );
 
   return (
     <div className="bg-green-500 p-4 fixed w-full z-50 shadow-xl">
@@ -41,54 +90,20 @@ const Navbar = () => {
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+              className="menu menu-sm dropdown-content mt-3 z-5 p-2 shadow bg-base-100 rounded-box w-52 font-bold"
             >
-              <li>
-                <a>Item 1</a>
-              </li>
-              <li>
-                <a>Parent</a>
-                <ul className="p-2">
-                  <li>
-                    <a>Submenu 1</a>
-                  </li>
-                  <li>
-                    <a>Submenu 2</a>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <a>Item 3</a>
-              </li>
+              {Navlinks}
             </ul>
           </div>
           <a className="btn btn-ghost text-xl">daisyUI</a>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1">
-            <li>
-              <a>Item 1</a>
-            </li>
-            <li>
-              <details>
-                <summary>Parent</summary>
-                <ul className="p-2">
-                  <li>
-                    <a>Submenu 1</a>
-                  </li>
-                  <li>
-                    <a>Submenu 2</a>
-                  </li>
-                </ul>
-              </details>
-            </li>
-            <li>
-              <a>Item 3</a>
-            </li>
+          <ul className="menu menu-horizontal px-1 font-bold space-x-2">
+            {Navlinks}
           </ul>
         </div>
         <div className="navbar-end">
-          <label className="cursor-pointer grid place-items-center">
+          <label className="cursor-pointer grid place-items-center mr-2">
             <input
               type="checkbox"
               onChange={handleTheme}
