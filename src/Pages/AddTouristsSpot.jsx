@@ -1,4 +1,4 @@
-import React from "react";
+import Swal from 'sweetalert2'
 
 const AddTouristsSpot = () => {
   const handleForm = (e) => {
@@ -28,7 +28,12 @@ console.log(spotData);
     .then(data => {
       console.log(data)
       if(data.insertedId){
-        
+        Swal.fire({
+          title: 'Added!',
+          text: 'Successfully added the spot data',
+          icon: 'success',
+          confirmButtonText: 'Ok'
+        })
       }
     })
   };
