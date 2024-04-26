@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const [theme, setTheme] = useState(localStorage.getItem("theme"));
@@ -164,10 +164,10 @@ const Navbar = () => {
                 </a>
               </li>
               <li>
-                <a>Settings</a>
+                <NavLink className={({isActive, isPending})=> isPending ? "pending" : isActive ? "text-primary focus:text-primary bg-transparent focus:bg-transparent hover:bg-transparent" : ""} to="/login">Login</NavLink>
               </li>
               <li>
-                <a>Logout</a>
+                <NavLink className={({isActive, isPending})=> isPending ? "pending" : isActive ? "text-primary focus:text-primary bg-transparent focus:bg-transparent hover:bg-transparent" : ""} to="/register">Register</NavLink>
               </li>
             </ul>
           </div>

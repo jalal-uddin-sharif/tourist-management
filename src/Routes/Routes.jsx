@@ -8,6 +8,8 @@ import Home from "../Home/Home";
 import AllTouristsSpot from "../Pages/AllTouristsSpot";
 import AddTouristsSpot from "../Pages/AddTouristsSpot";
 import MyList from "../Pages/MyList";
+import Login from "../Authentication/Login";
+import Register from "../Authentication/Register";
 
   export const router = createBrowserRouter([
     {
@@ -31,6 +33,15 @@ import MyList from "../Pages/MyList";
             path: "/my-list",
             element: <MyList/>
         },
+        {
+            path: "/login",
+            element: <Login/>
+        },
+        {
+            path: "/register",
+            element: <Register/>
+        },
+        
       ]
     },
   ]);
