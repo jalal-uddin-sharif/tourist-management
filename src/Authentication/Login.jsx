@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FaGoogle } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
 import { AuthContext } from "./AuthProvider/AuthProvider";
@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 const Login = () => {
     const navigate = useNavigate()
-    const {loginUser, setUser} = useContext(AuthContext)
+    const {loginUser, setUser, user} = useContext(AuthContext)
   const [error, setError] = useState("");
   const handleLogin = (e) => {
     e.preventDefault();
@@ -21,15 +21,22 @@ const Login = () => {
     loginUser(email, password)
     .then(res =>{
         console.log(res.user);
+        toast.success('Login Success')
         setUser(res.user)
         navigate("/")
+        form.reset();
     })
     .catch(err =>{
         console.log(err);
         toast.error("Email or Password didn't match")
-    })
-    form.reset();
+    }) 
   };
+
+  useEffect(()=>{
+    if(user){
+        navigate("/")
+    }
+  },[user])
   console.log(error);
   return (
     <div className="mt-10 container mx-auto p-4 min-h">

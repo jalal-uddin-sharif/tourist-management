@@ -10,6 +10,7 @@ import AddTouristsSpot from "../Pages/AddTouristsSpot";
 import MyList from "../Pages/MyList";
 import Login from "../Authentication/Login";
 import Register from "../Authentication/Register";
+import Profile from "../Pages/Profile";
 
   export const router = createBrowserRouter([
     {
@@ -40,6 +41,10 @@ import Register from "../Authentication/Register";
         {
             path: "/register",
             element: <Register/>
+        },
+        {
+            path: "/profile",
+            element: <Profile/>
         },
         
       ]

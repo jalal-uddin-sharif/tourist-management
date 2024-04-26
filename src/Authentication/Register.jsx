@@ -41,12 +41,16 @@ const Register = () => {
       setUser(result.user)
       toast.success("Acount created successfully")
       navigate("/login")
+      form.reset()
       
     })
-    .catch(error => console.log(error))
+    .catch(error => {
+      console.log(error);
+      toast.warning("Email Already Used, Try another email")
+    })
 
 
-    form.reset()
+    
   };
   if(user){
     return <Navigate to={"/"}></Navigate>
