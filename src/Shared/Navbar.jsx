@@ -1,7 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../Authentication/AuthProvider/AuthProvider";
+import { getAuth, signOut } from "firebase/auth";
 
 const Navbar = () => {
+  const auth = getAuth();
+  const { user } = useContext(AuthContext);
   const [theme, setTheme] = useState(localStorage.getItem("theme"));
 
   const handleTheme = () => {
@@ -18,14 +22,21 @@ const Navbar = () => {
     document.querySelector("html").setAttribute("data-theme", localTheme);
   }, [theme]);
 
+  const logOut = () =>{
+    signOut(auth)
+    .then(res =>console.log(res)).catch(err=>console.log(err))
+  }
   const Navlinks = (
     <>
       <li>
         <NavLink
           to="/"
           className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ?  "focus:text-primary focus:outline-none focus:hover:bg-transparent focus:bg-transparent active:bg-transparent text-primary"
-            : ""
+            isPending
+              ? "pending"
+              : isActive
+              ? "focus:text-primary focus:outline-none focus:hover:bg-transparent focus:bg-transparent active:bg-transparent text-primary"
+              : ""
           }
         >
           Home
@@ -35,8 +46,11 @@ const Navbar = () => {
         <NavLink
           to="/all-tourists-spot"
           className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ?  "focus:text-primary focus:outline-none focus:bg-transparent active:bg-transparent text-primary"
-            : ""
+            isPending
+              ? "pending"
+              : isActive
+              ? "focus:text-primary focus:outline-none focus:bg-transparent active:bg-transparent text-primary"
+              : ""
           }
         >
           All Tourists Spot
@@ -46,8 +60,11 @@ const Navbar = () => {
         <NavLink
           to="/add-tourists-spot"
           className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ?  "focus:text-primary focus:outline-none focus:bg-transparent active:bg-transparent text-primary"
-            : ""
+            isPending
+              ? "pending"
+              : isActive
+              ? "focus:text-primary focus:outline-none focus:bg-transparent active:bg-transparent text-primary"
+              : ""
           }
         >
           Add Tourists Spot
@@ -57,8 +74,11 @@ const Navbar = () => {
         <NavLink
           to="/my-list"
           className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ?  "focus:text-primary focus:outline-none focus:bg-transparent active:bg-transparent text-primary"
-            : ""
+            isPending
+              ? "pending"
+              : isActive
+              ? "focus:text-primary focus:outline-none focus:bg-transparent active:bg-transparent text-primary"
+              : ""
           }
         >
           My List
@@ -158,17 +178,44 @@ const Navbar = () => {
               className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
             >
               <li>
-                <a className="justify-between">
-                  Profile
-                  <span className="badge">New</span>
-                </a>
+                <a className="justify-between">Profile</a>
               </li>
-              <li>
-                <NavLink className={({isActive, isPending})=> isPending ? "pending" : isActive ? "text-primary focus:text-primary bg-transparent focus:bg-transparent hover:bg-transparent" : ""} to="/login">Login</NavLink>
-              </li>
-              <li>
-                <NavLink className={({isActive, isPending})=> isPending ? "pending" : isActive ? "text-primary focus:text-primary bg-transparent focus:bg-transparent hover:bg-transparent" : ""} to="/register">Register</NavLink>
-              </li>
+              {user ? (
+                <li>
+                  <a onClick={logOut} className="justify-between">Logout</a>
+                </li>
+              ) : (
+                <>
+                  <li>
+                    <NavLink
+                      className={({ isActive, isPending }) =>
+                        isPending
+                          ? "pending"
+                          : isActive
+                          ? "text-primary focus:text-primary bg-transparent focus:bg-transparent hover:bg-transparent"
+                          : ""
+                      }
+                      to="/login"
+                    >
+                      Login
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink
+                      className={({ isActive, isPending }) =>
+                        isPending
+                          ? "pending"
+                          : isActive
+                          ? "text-primary focus:text-primary bg-transparent focus:bg-transparent hover:bg-transparent"
+                          : ""
+                      }
+                      to="/register"
+                    >
+                      Register
+                    </NavLink>
+                  </li>
+                </>
+              )}
             </ul>
           </div>
         </div>

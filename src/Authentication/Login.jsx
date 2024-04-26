@@ -1,7 +1,12 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { FaGoogle } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
+import { AuthContext } from "./AuthProvider/AuthProvider";
+import { toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 const Login = () => {
+    const navigate = useNavigate()
+    const {loginUser, setUser} = useContext(AuthContext)
   const [error, setError] = useState("");
   const handleLogin = (e) => {
     e.preventDefault();
@@ -12,12 +17,22 @@ const Login = () => {
         return setError("password must be 6 charecter")
     } else{setError("")}
 
-    
+    //user Login
+    loginUser(email, password)
+    .then(res =>{
+        console.log(res.user);
+        setUser(res.user)
+        navigate("/")
+    })
+    .catch(err =>{
+        console.log(err);
+        toast.error("Email or Password didn't match")
+    })
     form.reset();
   };
   console.log(error);
   return (
-    <div className="mt-10 container mx-auto p-4">
+    <div className="mt-10 container mx-auto p-4 min-h">
       <h1 className="text-center text-5xl font-bold text-green-500">
         Create your Accout
       </h1>

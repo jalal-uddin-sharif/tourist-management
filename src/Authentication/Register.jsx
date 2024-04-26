@@ -1,10 +1,15 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { FaGoogle } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
+import { AuthContext } from "./AuthProvider/AuthProvider";
+import { toast } from "react-toastify";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const Register = () => {
+  const {createUser, setUser, user} = useContext(AuthContext);
   const [passwordError, setPasswordError] = useState("");
   const [confirmPassError, setConfirmPassError] = useState("");
+  const navigate = useNavigate()
   const handleRegister = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -28,11 +33,25 @@ const Register = () => {
     }else{
        setConfirmPassError("")
     }
-    console.log('final check')
+    
+
+    //Create User Account
+    createUser(email, password)
+    .then(result =>{
+      setUser(result.user)
+      toast.success("Acount created successfully")
+      navigate("/login")
+      
+    })
+    .catch(error => console.log(error))
+
+
     form.reset()
   };
+  if(user){
+    return <Navigate to={"/"}></Navigate>
+  }
 
-  console.log(passwordError);
   return (
     <div className="mt-10 container mx-auto p-4">
       <h1 className="text-center text-5xl font-bold text-green-500">
