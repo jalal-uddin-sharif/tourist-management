@@ -48,7 +48,7 @@ const UpdateSpot = () => {
 
     //single spot details
    useEffect(()=>{
-    fetch(`http://localhost:3000/spot/${id}`)
+    fetch(`http://localhost:3000/spots/${id}`)
     .then(res => res.json())
     .then(data => setSpot(data))
    },[])

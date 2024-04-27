@@ -5,13 +5,25 @@ import { Link } from 'react-router-dom';
 const MyList = () => {
     const {user} = useContext(AuthContext);
     console.log(user?.email);
-    const [mySpot, setMySpot] = useState([])
+    const [mySpot, setMySpot] = useState([]);
+    const [control, setControl] = useState(false)
 console.log(mySpot);
     useEffect(()=>{
         fetch(`http://localhost:3000/myAddedSpot/${user?.email}`)
         .then(res => res.json())
         .then(data => setMySpot(data))
-    },[user])
+    },[user, control])
+
+    const handleDelete = (id) => {
+        console.log("clicked", id);
+            fetch(`http://localhost:3000/delete-spot/${id}`,{
+                method: "DELETE"
+            })
+            .then(res => res.json())
+            .then(data => {
+                setControl(!control)
+                console.log(data)})
+    }
     return (
        <div className='min-h my-10 mx-20'>
             <div className="overflow-x-auto border">
@@ -40,7 +52,7 @@ console.log(mySpot);
             <Link to={`/update-spot/${spot._id}`}><button className='btn-link btn  -ml-4'>Update</button></Link>
         </td> 
         <td>
-            <button className='btn btn-link -ml-4 text-red-700'>Delete</button>
+            <button onClick={()=>handleDelete(`${spot._id}`)} className='btn btn-link -ml-4 text-red-700'>Delete</button>
         </td>
       </tr>
         ))
