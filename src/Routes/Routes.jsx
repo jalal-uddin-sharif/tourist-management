@@ -11,6 +11,7 @@ import MyList from "../Pages/MyList";
 import Login from "../Authentication/Login";
 import Register from "../Authentication/Register";
 import Profile from "../Pages/Profile";
+import UpdateSpot from "../component/UpdateSpot";
 
   export const router = createBrowserRouter([
     {
@@ -24,7 +25,8 @@ import Profile from "../Pages/Profile";
         },
         {
             path: "/all-tourists-spot",
-            element: <AllTouristsSpot/>
+            element: <AllTouristsSpot/>,
+            loader: ()=> fetch('http://localhost:3000/spot-data')
         },
         {
             path: "/add-tourists-spot",
@@ -45,6 +47,10 @@ import Profile from "../Pages/Profile";
         {
             path: "/profile",
             element: <Profile/>
+        },
+        {
+            path: "/update-spot/:id",
+            element: <UpdateSpot/>
         },
         
       ]

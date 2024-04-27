@@ -1,6 +1,12 @@
+import { useContext } from 'react';
 import Swal from 'sweetalert2'
+import { AuthContext } from '../Authentication/AuthProvider/AuthProvider';
 
 const AddTouristsSpot = () => {
+  const {user} = useContext(AuthContext)
+  const userName = `${user?.displayName}`
+  const email = `${user?.email}`
+  console.log(userName, email);
   const handleForm = (e) => {
     e.preventDefault()
    const form = e.target;
@@ -14,9 +20,9 @@ const AddTouristsSpot = () => {
    const visitorPerYear = form.visitorPerYear.value;
    const textArea = form.textArea.value;
    console.log(imageUrl, spotName, countryName, location, cost, season, time, visitorPerYear, textArea)
-   const spotData = {imageUrl, spotName, countryName, location, cost, season, time, visitorPerYear, textArea}
+   const spotData = {imageUrl, spotName, countryName, location, cost, season, time, visitorPerYear, textArea, userName, email}
 //    form.reset()
-console.log(spotData);
+  console.log(spotData);
     fetch('http://localhost:3000/spot-data',{
       method: 'post',
       headers: {
