@@ -26,7 +26,7 @@ import UpdateSpot from "../component/UpdateSpot";
         {
             path: "/all-tourists-spot",
             element: <AllTouristsSpot/>,
-            loader: ()=> fetch('http://localhost:3000/spot-data')
+            loader: ()=> fetch('https://tourist-server-five.vercel.app/spot-data')
         },
         {
             path: "/add-tourists-spot",

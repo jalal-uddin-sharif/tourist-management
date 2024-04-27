@@ -25,7 +25,7 @@ const UpdateSpot = () => {
    console.log(imageUrl, spotName, countryName, location, cost, season, time, visitorPerYear, textArea)
    const spotData = {imageUrl, spotName, countryName, location, cost, season, time, visitorPerYear, textArea, userName, email}
 //    form.reset()
-    fetch(`http://localhost:3000/update-spot/${id}`,{
+    fetch(`https://tourist-server-five.vercel.app/update-spot/${id}`,{
       method: 'PUT',
       headers: {
         'content-type': 'application/json'
@@ -48,7 +48,7 @@ const UpdateSpot = () => {
 
     //single spot details
    useEffect(()=>{
-    fetch(`http://localhost:3000/spots/${id}`)
+    fetch(`https://tourist-server-five.vercel.app/spots/${id}`)
     .then(res => res.json())
     .then(data => setSpot(data))
    },[])

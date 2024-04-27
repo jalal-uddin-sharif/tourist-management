@@ -19,12 +19,11 @@ const AddTouristsSpot = () => {
    const time = form.time.value;
    const visitorPerYear = form.visitorPerYear.value;
    const textArea = form.textArea.value;
-   console.log(imageUrl, spotName, countryName, location, cost, season, time, visitorPerYear, textArea)
    const spotData = {imageUrl, spotName, countryName, location, cost, season, time, visitorPerYear, textArea, userName, email}
 //    form.reset()
   console.log(spotData);
-    fetch('http://localhost:3000/spot-data',{
-      method: 'post',
+    fetch('https://tourist-server-five.vercel.app/spot-data',{
+      method: 'POST',
       headers: {
         'content-type': 'application/json'
       },
