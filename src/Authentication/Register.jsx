@@ -10,7 +10,7 @@ import Loader from "../component/Loader";
 
 const Register = () => {
   const auth = getAuth()
-  const {createUser, setUser, user, loading, setLoading} = useContext(AuthContext);
+  const {createUser, setUser, user, loading, setLoading, googleLogin} = useContext(AuthContext);
   const [passwordError, setPasswordError] = useState("");
   const [confirmPassError, setConfirmPassError] = useState("");
   const navigate = useNavigate()
@@ -176,7 +176,7 @@ const Register = () => {
 
         <div className="divider divider-accent">Or SignIn with</div>
         <div className="space-x-2 flex justify-center">
-          <button className="btn text-lg btn-warning">
+          <button onClick={googleLogin} className="btn text-lg btn-warning">
           <FaGoogle color="purple" size={20}/> Google
           </button>
           <button className="btn text-lg btn-accent">

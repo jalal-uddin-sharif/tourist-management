@@ -2,9 +2,10 @@ import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../Authentication/AuthProvider/AuthProvider";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import Loader from "../component/Loader";
 
 const MyList = () => {
-  const { user } = useContext(AuthContext);
+  const { user,loading } = useContext(AuthContext);
   console.log(user?.email);
   const [mySpot, setMySpot] = useState([]);
   const [control, setControl] = useState(false);
@@ -44,6 +45,9 @@ const MyList = () => {
       }
     });
   };
+  if(loading){
+    return <Loader/>
+  }
   return (
     <div className="min-h my-10 mx-20">
       <div className="overflow-x-auto border">

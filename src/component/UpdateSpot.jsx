@@ -17,10 +17,10 @@ const UpdateSpot = () => {
    const spotName = form.spotName.value;
    const countryName = form.countryName.value;
    const location = form.location.value;
-   const cost = form.cost.value;
+   const cost = +form.cost.value;
    const season = form.season.value;
    const time = form.time.value;
-   const visitorPerYear = form.visitorPerYear.value;
+   const visitorPerYear = +form.visitorPerYear.value;
    const textArea = form.textArea.value;
    console.log(imageUrl, spotName, countryName, location, cost, season, time, visitorPerYear, textArea)
    const spotData = {imageUrl, spotName, countryName, location, cost, season, time, visitorPerYear, textArea, userName, email}

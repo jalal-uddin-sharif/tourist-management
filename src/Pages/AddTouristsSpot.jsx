@@ -15,10 +15,10 @@ const AddTouristsSpot = () => {
    const spotName = form.spotName.value;
    const countryName = form.countryName.value;
    const location = form.location.value;
-   const cost = form.cost.value;
+   const cost = +form.cost.value;
    const season = form.season.value;
    const time = form.time.value;
-   const visitorPerYear = form.visitorPerYear.value;
+   const visitorPerYear = +form.visitorPerYear.value;
    const textArea = form.textArea.value;
    const spotData = {imageUrl, spotName, countryName, location, cost, season, time, visitorPerYear, textArea, userName, email}
 //    form.reset()
@@ -68,7 +68,7 @@ const AddTouristsSpot = () => {
           </label>
           <label className="input input-bordered flex w-full items-center gap-2">
             Average cost :
-            <input type="text" name="cost" className="grow" placeholder="Type cost amount" />
+            <input type="number" name="cost" className="grow" placeholder="Type cost amount" />
           </label>
           <label className="input input-bordered flex w-full items-center gap-2">
             Seasonality :
@@ -80,7 +80,7 @@ const AddTouristsSpot = () => {
           </label>
           <label className="input input-bordered flex w-full items-center gap-2">
             Tota visitors per year :
-            <input type="text" name="visitorPerYear" className="grow" placeholder="Type the visitor number" />
+            <input type="number" name="visitorPerYear" className="grow" placeholder="Type the visitor number" />
           </label>
           <label className="flex w-full items-center gap-2">
             Short Description :
