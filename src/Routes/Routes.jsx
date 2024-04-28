@@ -12,6 +12,7 @@ import Login from "../Authentication/Login";
 import Register from "../Authentication/Register";
 import Profile from "../Pages/Profile";
 import UpdateSpot from "../component/UpdateSpot";
+import Viewdetails from "../Pages/Viewdetails";
 
   export const router = createBrowserRouter([
     {
@@ -51,6 +52,10 @@ import UpdateSpot from "../component/UpdateSpot";
         {
             path: "/update-spot/:id",
             element: <UpdateSpot/>
+        },
+        {
+            path: "/spots/:id",
+            element: <Viewdetails/>
         },
         
       ]

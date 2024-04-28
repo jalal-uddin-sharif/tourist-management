@@ -26,22 +26,21 @@ const MyList = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`https://tourist-server-five.vercel.app/delete-spot/${id}`,{
-                method: "DELETE"
-            })
-            .then(res => res.json())
-            .then(data => {
-                setControl(!control)
-                console.log(data)
-                if(data.deletedCount > 0){
-                  Swal.fire({
-                    title: "Deleted!",
-                    text: "Your data has been deleted.",
-                    icon: "success",
-                  });
-                }
-              })
-              
+        fetch(`https://tourist-server-five.vercel.app/delete-spot/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            setControl(!control);
+            console.log(data);
+            if (data.deletedCount > 0) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your data has been deleted.",
+                icon: "success",
+              });
+            }
+          });
       }
     });
   };

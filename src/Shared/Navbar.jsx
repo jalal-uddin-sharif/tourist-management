@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../Authentication/AuthProvider/AuthProvider";
 import { getAuth, signOut } from "firebase/auth";
+import profileImg from '../../src/assets/profile.png'
 
 const Navbar = () => {
   const auth = getAuth();
@@ -115,7 +116,7 @@ const Navbar = () => {
               {Navlinks}
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">daisyUI</a>
+          <a className="btn btn-ghost text-xl">TourSpotter</a>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 font-bold space-x-2">
@@ -169,7 +170,7 @@ const Navbar = () => {
               <div className="w-10 rounded-full">
                 <img
                   alt="Tailwind CSS Navbar component"
-                  src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg"
+                  src={user?.photoURL || profileImg}
                 />
               </div>
             </div>
