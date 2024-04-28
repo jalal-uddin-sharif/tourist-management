@@ -1,12 +1,14 @@
 import { useContext, useEffect, useState } from "react";
-import { FaGoogle } from "react-icons/fa";
+import { FaGithub, FaGoogle } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
 import { AuthContext } from "./AuthProvider/AuthProvider";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import Loader from "../component/Loader";
 const Login = () => {
+  const location = useLocation()
     const navigate = useNavigate()
-    const {loginUser, setUser, user} = useContext(AuthContext)
+    const {loginUser, setUser, user, loading, setLoading} = useContext(AuthContext)
   const [error, setError] = useState("");
   const handleLogin = (e) => {
     e.preventDefault();
@@ -23,25 +25,31 @@ const Login = () => {
         console.log(res.user);
         toast.success('Login Success')
         setUser(res.user)
-        navigate("/")
+        navigate(location ? location?.state : "/")
         form.reset();
     })
     .catch(err =>{
         console.log(err);
         toast.error("Email or Password didn't match")
+        setLoading(false)
     }) 
   };
 
-  useEffect(()=>{
-    if(user){
-        navigate("/")
-    }
-  },[user])
-  console.log(error);
+  // useEffect(()=>{
+  //   if(user){
+  //       navigate("/")
+  //   }
+  // },[user])
+  console.log(location);
+
+  if(loading){
+    return <Loader/>
+  }
+
   return (
     <div className="mt-10 container mx-auto p-4 min-h">
       <h1 className="text-center text-5xl font-bold text-green-500">
-        Create your Accout
+        Please Login
       </h1>
       <hr className="w-5/12 mx-auto my-4" />
       <div className=" flex flex-col justify-center items-center">
@@ -57,7 +65,7 @@ const Login = () => {
                 type="email"
                 id="email"
                 placeholder="Email"
-                className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+                className="peer text-black h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
               />
 
               <span className="absolute start-0 top-2 -translate-y-1/2 text-xs text-gray-700 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
@@ -74,7 +82,7 @@ const Login = () => {
                 type="password"
                 id="password"
                 placeholder="Email"
-                className="peer h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
+                className="peer text-black h-8 w-full border-none bg-transparent p-0 placeholder-transparent focus:border-transparent focus:outline-none focus:ring-0 sm:text-sm"
               />
 
               <span className="absolute start-0 top-2 -translate-y-1/2 text-xs text-gray-700 transition-all peer-placeholder-shown:top-1/2 peer-placeholder-shown:text-sm peer-focus:top-2 peer-focus:text-xs">
@@ -88,6 +96,10 @@ const Login = () => {
             <button type="submit" className="btn btn-primary w-full ">
               Login
             </button>
+            <div className="flex justify-between px-2 text-md font-normal">
+              <h1 className="underline text-success">forgot password?</h1>
+              <h1 className="text-black">haven't accout? <Link className="underline text-primary" to={"/register"} >register</Link> </h1>
+            </div>
           </form>
 
           <div className="divider divider-accent">Or SignIn with</div>
@@ -96,7 +108,7 @@ const Login = () => {
               <FaGoogle color="purple" size={20} /> Google
             </button>
             <button className="btn text-lg btn-accent">
-              <FaFacebook color="" size={20} /> Facebook
+              <FaGithub color="" size={20} /> GitHub
             </button>
           </div>
         </div>

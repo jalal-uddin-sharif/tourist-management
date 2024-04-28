@@ -1,15 +1,16 @@
 import React, { useContext, useState } from "react";
-import { FaGoogle } from "react-icons/fa";
+import { FaGithub, FaGoogle } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
 import { AuthContext } from "./AuthProvider/AuthProvider";
 import { toast } from "react-toastify";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { getAuth, signOut, updateProfile } from "firebase/auth";
+import Loader from "../component/Loader";
 
 
 const Register = () => {
   const auth = getAuth()
-  const {createUser, setUser, user} = useContext(AuthContext);
+  const {createUser, setUser, user, loading, setLoading} = useContext(AuthContext);
   const [passwordError, setPasswordError] = useState("");
   const [confirmPassError, setConfirmPassError] = useState("");
   const navigate = useNavigate()
@@ -41,7 +42,6 @@ const Register = () => {
     //Create User Account
     createUser(email, password)
     .then(result =>{
-      setUser(result.user)
       toast.success("Acount created successfully")
       form.reset()
       updateProfile(result.user,{
@@ -59,8 +59,9 @@ const Register = () => {
 
     
   };
-  if(user){
-    return <Navigate to={"/"}></Navigate>
+ 
+  if(loading){
+    return <Loader/>
   }
 
   return (
@@ -170,6 +171,7 @@ const Register = () => {
           <button type="submit" className="btn btn-primary w-full ">
             Register
           </button>
+          <h1 className="px-2 text-base text-black">Already have an account? <Link className="text-primary underline" to={"/login"}>Login</Link></h1>
         </form>
 
         <div className="divider divider-accent">Or SignIn with</div>
@@ -178,8 +180,8 @@ const Register = () => {
           <FaGoogle color="purple" size={20}/> Google
           </button>
           <button className="btn text-lg btn-accent">
-          <FaFacebook color="" size={20}/> Facebook
-          </button>
+              <FaGithub color="" size={20} /> GitHub
+            </button>
         </div>
         </div>
         

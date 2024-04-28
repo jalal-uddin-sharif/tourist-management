@@ -1,9 +1,10 @@
 import { useContext } from 'react';
 import Swal from 'sweetalert2'
 import { AuthContext } from '../Authentication/AuthProvider/AuthProvider';
+import Loader from '../component/Loader';
 
 const AddTouristsSpot = () => {
-  const {user} = useContext(AuthContext)
+  const {user, loading} = useContext(AuthContext)
   const userName = `${user?.displayName}`
   const email = `${user?.email}`
   console.log(userName, email);
@@ -42,6 +43,9 @@ const AddTouristsSpot = () => {
       }
     })
   };
+  if(loading){
+    return <Loader/>
+  }
   return (
     <div className="mt-4 container mx-auto min-h">
       <form onSubmit={handleForm}>

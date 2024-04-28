@@ -13,6 +13,7 @@ import Register from "../Authentication/Register";
 import Profile from "../Pages/Profile";
 import UpdateSpot from "../component/UpdateSpot";
 import Viewdetails from "../Pages/Viewdetails";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
   export const router = createBrowserRouter([
     {
@@ -31,7 +32,7 @@ import Viewdetails from "../Pages/Viewdetails";
         },
         {
             path: "/add-tourists-spot",
-            element: <AddTouristsSpot/>
+            element: <PrivateRoute><AddTouristsSpot/></PrivateRoute>
         },
         {
             path: "/my-list",
@@ -47,7 +48,9 @@ import Viewdetails from "../Pages/Viewdetails";
         },
         {
             path: "/profile",
-            element: <Profile/>
+            element: <PrivateRoute>
+                <Profile/>
+            </PrivateRoute>
         },
         {
             path: "/update-spot/:id",
