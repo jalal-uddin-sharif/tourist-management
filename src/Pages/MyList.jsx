@@ -1,12 +1,11 @@
 import React, { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../Authentication/AuthProvider/AuthProvider";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import Loader from "../component/Loader";
+import { AuthContext } from "../Authentication/AuthProvider/AuthProvider";
 
 const MyList = () => {
-  const { user,loading, setLoading } = useContext(AuthContext);
-  console.log(user?.email);
+  const { user,loading, setLoading } = useContext(AuthContext)
   const [mySpot, setMySpot] = useState([]);
   const [control, setControl] = useState(false);
   console.log(mySpot);

@@ -23,10 +23,9 @@ const Login = () => {
     loginUser(email, password)
     .then(res =>{
         console.log(res.user);
-        toast.success('Login Success')
         setUser(res.user)
-        navigate(location ? location?.state : "/")
-        form.reset();
+        navigate(location?.state || "/")
+        return toast.success('Login Success')
     })
     .catch(err =>{
         console.log(err);
@@ -35,11 +34,7 @@ const Login = () => {
     }) 
   };
 
-  // useEffect(()=>{
-  //   if(user){
-  //       navigate("/")
-  //   }
-  // },[user])
+  
   console.log(location);
 
   if(loading){

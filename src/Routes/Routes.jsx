@@ -35,7 +35,7 @@ import PrivateRoute from "../PrivateRoute/PrivateRoute";
         },
         {
             path: "/my-list",
-            element: <MyList/>
+            element: <PrivateRoute><MyList/></PrivateRoute>
         },
         {
             path: "/login",

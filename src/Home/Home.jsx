@@ -1,8 +1,9 @@
+import TouristsSpot from "../component/TouristsSpot";
 
 const Home = () => {
     return (
         <div className="min-h">
-            its home view
+            <TouristsSpot/>
 
         </div>
     );

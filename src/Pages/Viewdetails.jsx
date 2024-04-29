@@ -9,13 +9,16 @@ import { AuthContext } from '../Authentication/AuthProvider/AuthProvider';
 import Loader from '../component/Loader';
 
 const Viewdetails = () => {
-    const {loading} = useContext(AuthContext)
+    const {loading, setLoading} = useContext(AuthContext)
     const {id} = useParams()
     const [spot, setSpot] = useState(null)
         useEffect(()=>{
+            setLoading(true)
             fetch(`https://tourist-server-five.vercel.app/spots/${id}`)
             .then(res => res.json())
-            .then(data => setSpot(data))
+            .then(data => {
+                setLoading(false)
+                setSpot(data)})
            },[])
            
 if(loading){
