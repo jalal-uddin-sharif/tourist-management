@@ -13,17 +13,16 @@ const UpdateSpot = () => {
   const handleForm = (e) => {
     e.preventDefault()
    const form = e.target;
-   const imageUrl = form.imageUrl.value;
-   const spotName = form.spotName.value;
-   const countryName = form.countryName.value;
+   const image = form.image.value;
+   const tourists_spot_name = form.tourists_spot_name.value;
+   const country_Name = form.country_Name.value;
    const location = form.location.value;
-   const cost = +form.cost.value;
-   const season = form.season.value;
-   const time = form.time.value;
-   const visitorPerYear = +form.visitorPerYear.value;
-   const textArea = form.textArea.value;
-   console.log(imageUrl, spotName, countryName, location, cost, season, time, visitorPerYear, textArea)
-   const spotData = {imageUrl, spotName, countryName, location, cost, season, time, visitorPerYear, textArea, userName, email}
+   const average_cost = +form.average_cost.value;
+   const seasonality = form.seasonality.value;
+   const travel_time = form.travel_time.value;
+   const totaVisitorsPerYear = +form.totaVisitorsPerYear.value;
+   const short_description = form.short_description.value;
+   const spotData = {image, tourists_spot_name, country_Name, location, average_cost, seasonality, travel_time, totaVisitorsPerYear, short_description, userName, email}
 //    form.reset()
     fetch(`https://tourist-server-five.vercel.app/update-spot/${id}`,{
       method: 'PUT',
@@ -59,15 +58,15 @@ const UpdateSpot = () => {
           <div className="grid lg:grid-cols-3 grid-cols-1 md:grid-cols-2  justify-between lg:gap-10 gap-2 lg:mx-auto md:mx-auto mx-4 form-control">
             <label className="input input-bordered flex w-full items-center gap-2">
               Imge url :
-              <input type="text" name="imageUrl"  className="grow" placeholder="Enter image url" defaultValue={spot?.[0].imageUrl} />
+              <input type="text" name="image"  className="grow" placeholder="Enter image url" defaultValue={spot?.[0].image} />
             </label>
             <label className="input input-bordered flex lg:w-full items-center gap-2">
               Tourist spot name :
-              <input type="text" name="spotName" className="grow" placeholder="Type touris spot name" defaultValue={spot?.[0].spotName}/>
+              <input type="text" name="tourists_spot_name" className="grow" placeholder="Type touris spot name" defaultValue={spot?.[0].tourists_spot_name}/>
             </label>
             <label className="input input-bordered flex w-full items-center gap-2">
               Country name :
-              <input type="text" name="countryName" className="grow" placeholder="Type country name" defaultValue={spot?.[0].countryName} />
+              <input type="text" name="country_Name" className="grow" placeholder="Type country name" defaultValue={spot?.[0].country_Name} />
             </label>
             <label className="input input-bordered flex w-full items-center gap-2">
               Location
@@ -75,25 +74,25 @@ const UpdateSpot = () => {
             </label>
             <label className="input input-bordered flex w-full items-center gap-2">
               Average cost :
-              <input type="text" name="cost" className="grow" placeholder="Type cost amount" defaultValue={spot?.[0].cost} />
+              <input type="text" name="average_cost" className="grow" placeholder="Type cost amount" defaultValue={spot?.[0].average_cost} />
             </label>
             <label className="input input-bordered flex w-full items-center gap-2">
               Seasonality :
-              <input type="text" name="season" className="grow" placeholder="Type season name"  defaultValue={spot?.[0].season}/>
+              <input type="text" name="seasonality" className="grow" placeholder="Type season name"  defaultValue={spot?.[0].seasonality}/>
             </label>
             <label className="input input-bordered flex w-full items-center gap-2">
               Travel Time :
-              <input type="text" name="time" className="grow" placeholder="Type travel time"  defaultValue={spot?.[0].time}/>
+              <input type="text" name="travel_time" className="grow" placeholder="Type travel time"  defaultValue={spot?.[0].travel_time}/>
             </label>
             <label className="input input-bordered flex w-full items-center gap-2">
               Tota visitors per year :
-              <input type="text" name="visitorPerYear" className="grow" placeholder="Type the visitor number" defaultValue={spot?.[0].visitorPerYear}/>
+              <input type="text" name="totaVisitorsPerYear" className="grow" placeholder="Type the visitor number" defaultValue={spot?.[0].totaVisitorsPerYear}/>
             </label>
             <label className="flex w-full items-center gap-2">
               Short Description :
               <textarea
-              defaultValue={spot?.[0].textArea}
-              name="textArea"
+              defaultValue={spot?.[0].short_description}
+              name="short_description"
                 className="textarea grow textarea-bordered"
                 placeholder="Write description"
               ></textarea>{" "}

@@ -28,7 +28,6 @@ import PrivateRoute from "../PrivateRoute/PrivateRoute";
         {
             path: "/all-tourists-spot",
             element: <AllTouristsSpot/>,
-            loader: ()=> fetch('https://tourist-server-five.vercel.app/spot-data')
         },
         {
             path: "/add-tourists-spot",
