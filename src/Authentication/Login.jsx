@@ -8,7 +8,7 @@ import Loader from "../component/Loader";
 const Login = () => {
   const location = useLocation()
     const navigate = useNavigate()
-    const {loginUser, setUser, user, loading, setLoading, googleLogin} = useContext(AuthContext)
+    const {loginUser, setUser, user, loading, setLoading, googleLogin, githubLogin} = useContext(AuthContext)
   const [error, setError] = useState("");
   const handleLogin = (e) => {
     e.preventDefault();
@@ -104,10 +104,10 @@ const Login = () => {
 
           <div className="divider divider-accent">Or SignIn with</div>
           <div className="space-x-2 flex justify-center">
-            <button onClick={googleLogin} className="btn text-lg btn-warning">
+            <button onClick={()=>googleLogin(location, navigate)} className="btn text-lg btn-warning">
               <FaGoogle color="purple" size={20} /> Google
             </button>
-            <button className="btn text-lg btn-accent">
+            <button onClick={()=>githubLogin(location, navigate)} className="btn text-lg btn-accent">
               <FaGithub color="" size={20} /> GitHub
             </button>
           </div>

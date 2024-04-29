@@ -5,15 +5,18 @@ import Swal from "sweetalert2";
 import Loader from "../component/Loader";
 
 const MyList = () => {
-  const { user,loading } = useContext(AuthContext);
+  const { user,loading, setLoading } = useContext(AuthContext);
   console.log(user?.email);
   const [mySpot, setMySpot] = useState([]);
   const [control, setControl] = useState(false);
   console.log(mySpot);
   useEffect(() => {
+    setLoading(true)
     fetch(`https://tourist-server-five.vercel.app/my-added-spot/${user?.email}`)
       .then((res) => res.json())
-      .then((data) => setMySpot(data));
+      .then((data) => {
+        setLoading(false)
+        setMySpot(data)});
   }, [user, control]);
 
   const handleDelete = (id) => {
@@ -58,7 +61,7 @@ const MyList = () => {
               <th>Spot name</th>
               <th>Country name</th>
               <th>location</th>
-              <th>Avarage cost</th>
+              <th>Average cost</th>
               <th>Update</th>
               <th>Delete</th>
             </tr>
@@ -67,10 +70,10 @@ const MyList = () => {
             {mySpot?.map((spot, idx) => (
               <tr key={spot._id}>
                 <th>{idx + 1}</th>
-                <td>{spot.spotName}</td>
-                <td>{spot.countryName}</td>
+                <td>{spot.tourists_spot_name}</td>
+                <td>{spot.country_Name}</td>
                 <td>{spot.location}</td>
-                <td>{spot.cost}</td>
+                <td>{spot.average_cost}</td>
                 <td>
                   <Link to={`/update-spot/${spot._id}`}>
                     <button className="btn-link btn  -ml-4">Update</button>
