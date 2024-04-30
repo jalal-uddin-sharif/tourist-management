@@ -25,7 +25,7 @@ TravelSpotter is a web application designed to help travelers explore exciting d
 
 
 ## Challenges part (package use)
-- **React Simply Typewriter**: [GitHub](https://www.npmjs.com/package/react-simple-typewriter)
+- **React Simple Typewriter**: [GitHub](https://www.npmjs.com/package/react-simple-typewriter)
 - **React Tooltip**: [GitHub](https://react-tooltip.com/)
 
 ## Feedback
