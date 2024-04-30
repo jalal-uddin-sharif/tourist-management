@@ -3,6 +3,7 @@ import CountryCate from "../component/CountryCate";
 import TouristsSpot from "../component/TouristsSpot";
 import Slider from "../component/Slider";
 import Traveltips from "../component/Traveltips";
+import Testimonial from "../component/Testimonial";
 
 const Home = () => {
     return (
@@ -11,6 +12,7 @@ const Home = () => {
             <CountryCate/>
             <TouristsSpot/>
             <Traveltips/>
+            <Testimonial/>
 
         </div>
     );
