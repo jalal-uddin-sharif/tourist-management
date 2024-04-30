@@ -27,8 +27,12 @@ const Navbar = () => {
 
   const logOut = () => {
     signOut(auth)
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
+      .then((res) => {
+        // console.log(res)
+      })
+      .catch((err) => {
+        // console.log(err)
+      });
   };
   const Navlinks = (
     <>
@@ -91,7 +95,7 @@ const Navbar = () => {
     </>
   );
 
-  console.log(user);
+  // console.log(user);
   return (
     <div className="bg-green-500 p-4 fixed w-full z-50 shadow-xl">
       <div className="navbar container mx-auto bg-base-100 rounded-xl">

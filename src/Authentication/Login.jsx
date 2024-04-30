@@ -6,39 +6,48 @@ import { toast } from "react-toastify";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Loader from "../component/Loader";
 const Login = () => {
-  const location = useLocation()
-    const navigate = useNavigate()
-    const {loginUser, setUser, user, loading, setLoading, googleLogin, githubLogin} = useContext(AuthContext)
+  const location = useLocation();
+  const navigate = useNavigate();
+  const {
+    loginUser,
+    setUser,
+    user,
+    loading,
+    setLoading,
+    googleLogin,
+    githubLogin,
+  } = useContext(AuthContext);
   const [error, setError] = useState("");
   const handleLogin = (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    if(password.length < 6){
-        return setError("password must be 6 charecter")
-    } else{setError("")}
+    if (password.length < 6) {
+      return setError("password must be 6 charecter");
+    } else {
+      setError("");
+    }
 
     //user Login
     loginUser(email, password)
-    .then(res =>{
-        console.log(res.user);
-        setUser(res.user)
-        navigate(location?.state || "/")
-        return toast.success('Login Success')
-    })
-    .catch(err =>{
-        console.log(err);
-        toast.error("Email or Password didn't match")
-        setLoading(false)
-    }) 
+      .then((res) => {
+        // console.log(res.user);
+        setUser(res.user);
+        navigate(location?.state || "/");
+        return toast.success("Login Success");
+      })
+      .catch((err) => {
+        // console.log(err);
+        toast.error("Email or Password didn't match");
+        setLoading(false);
+      });
   };
 
-  
-  console.log(location);
 
-  if(loading){
-    return <Loader/>
+
+  if (loading) {
+    return <Loader />;
   }
 
   return (
@@ -85,24 +94,35 @@ const Login = () => {
               </span>
             </label>
             {error && (
-            <h1 className="-mt-6 mb-2 text-sm text-red-600">{error}</h1>
-          )}
+              <h1 className="-mt-6 mb-2 text-sm text-red-600">{error}</h1>
+            )}
 
             <button type="submit" className="btn btn-primary w-full ">
               Login
             </button>
             <div className="lg:flex justify-between px-2 text-md font-normal">
               <h1 className="underline text-success">forgot password?</h1>
-              <h1 className="text-black">haven't accout? <Link className="underline text-primary" to={"/register"} >register</Link> </h1>
+              <h1 className="text-black">
+                haven't accout?{" "}
+                <Link className="underline text-primary" to={"/register"}>
+                  register
+                </Link>{" "}
+              </h1>
             </div>
           </form>
 
           <div className="divider divider-accent">Or SignIn with</div>
           <div className="space-x-2 flex justify-center">
-            <button onClick={()=>googleLogin(location, navigate)} className="btn text-lg btn-warning">
+            <button
+              onClick={() => googleLogin(location, navigate)}
+              className="btn text-lg btn-warning"
+            >
               <FaGoogle color="purple" size={20} /> Google
             </button>
-            <button onClick={()=>githubLogin(location, navigate)} className="btn text-lg btn-accent">
+            <button
+              onClick={() => githubLogin(location, navigate)}
+              className="btn text-lg btn-accent"
+            >
               <FaGithub color="" size={20} /> GitHub
             </button>
           </div>

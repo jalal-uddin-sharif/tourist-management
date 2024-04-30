@@ -22,11 +22,13 @@ const Countries = () => {
         setLoading(false);
         setAllSpot(data);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        // console.log(err)
+      });
   }, []);
 
   const handleSort = (key) => {
-    console.log(key);
+    // console.log(key);
     const sortedSpot = [...allSpot].sort((a, b) => a[key] - b[key]);
     setAllSpot(sortedSpot);
   };
@@ -34,7 +36,7 @@ const Countries = () => {
   if (loading) {
     return <Loader />;
   }
-  console.log(country_name);
+  // console.log(country_name);
   return (
     <div className="min-h">
       <div className="my-12 min-h">

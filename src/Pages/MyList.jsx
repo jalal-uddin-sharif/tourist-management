@@ -5,17 +5,18 @@ import Loader from "../component/Loader";
 import { AuthContext } from "../Authentication/AuthProvider/AuthProvider";
 
 const MyList = () => {
-  const { user,loading, setLoading } = useContext(AuthContext)
+  const { user, loading, setLoading } = useContext(AuthContext);
   const [mySpot, setMySpot] = useState([]);
   const [control, setControl] = useState(false);
-  console.log(mySpot);
+  // console.log(mySpot);
   useEffect(() => {
-    setLoading(true)
+    setLoading(true);
     fetch(`https://tourist-server-five.vercel.app/my-added-spot/${user?.email}`)
       .then((res) => res.json())
       .then((data) => {
-        setLoading(false)
-        setMySpot(data)});
+        setLoading(false);
+        setMySpot(data);
+      });
   }, [user, control]);
 
   const handleDelete = (id) => {
@@ -35,7 +36,7 @@ const MyList = () => {
           .then((res) => res.json())
           .then((data) => {
             setControl(!control);
-            console.log(data);
+            // console.log(data);
             if (data.deletedCount > 0) {
               Swal.fire({
                 title: "Deleted!",
@@ -47,13 +48,15 @@ const MyList = () => {
       }
     });
   };
-  if(loading){
-    return <Loader/>
+  if (loading) {
+    return <Loader />;
   }
   return (
     <div className="min-h my-10 lg:mx-20">
       <div>
-        <h1 className='text-center text-3xl font-semibold my-6'>My listed Spot data</h1>
+        <h1 className="text-center text-3xl font-semibold my-6">
+          My listed Spot data
+        </h1>
       </div>
       <div className="overflow-x-auto border">
         <table className="table">

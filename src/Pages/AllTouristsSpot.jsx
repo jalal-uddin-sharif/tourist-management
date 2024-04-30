@@ -7,35 +7,39 @@ import { AuthContext } from "../Authentication/AuthProvider/AuthProvider";
 import Loader from "../component/Loader";
 
 const AllTouristsSpot = () => {
-  const {loading, setLoading} = useContext(AuthContext)
+  const { loading, setLoading } = useContext(AuthContext);
   const [allSpot, setAllSpot] = useState([]);
   useEffect(() => {
-    setLoading(true)
+    setLoading(true);
     fetch("https://tourist-server-five.vercel.app/spot-data")
       .then((res) => res.json())
       .then((data) => {
-        setLoading(false)
-        setAllSpot(data)})
-      .catch((err) => console.log(err));
+        setLoading(false);
+        setAllSpot(data);
+      })
+      .catch((err) => {
+        // console.log(err)
+      });
   }, []);
 
   const handleSort = (key) => {
-    console.log(key);
-    const sortedSpot = [...allSpot].sort(
-      (a, b) => a[key] - b[key]
-    );
+    // console.log(key);
+    const sortedSpot = [...allSpot].sort((a, b) => a[key] - b[key]);
     setAllSpot(sortedSpot);
   };
-if(loading){
-  return <Loader/>
-}
+  if (loading) {
+    return <Loader />;
+  }
   return (
     <div className="my-12 min-h">
       <h1 className="text-center text-3xl font-semibold">
         All tourists sport{" "}
       </h1>
       <div className="flex justify-center my-4">
-        <select onChange={(e)=>handleSort(e.target.value)} className="select select-info w-full max-w-xs">
+        <select
+          onChange={(e) => handleSort(e.target.value)}
+          className="select select-info w-full max-w-xs"
+        >
           <option disabled selected>
             Sort by
           </option>
@@ -44,7 +48,6 @@ if(loading){
       </div>
       <hr className="container mx-auto my-4 border-accent border-2 rounded-t-full" />
       <div className=" container lg:mx-auto mx-4 md:mx-auto lg:w-auto w-[90%] grid lg:grid-cols-2 md:grid-cols-2 grid-cols-1 gap-6">
-      
         {allSpot.map((spot) => (
           <div
             key={spot._id}
