@@ -21,11 +21,10 @@ const TouristsSpot = () => {
   console.log(spotData);
   return (
     <div className="container mx-auto">
-      <div className="border-l-2  border-success mt-6 px-3">
+      <div className="border-l-2  border-success my-6 px-3">
         <h1 className="text-3xl font-medium">Tourists Spot</h1>
         <p className="text-lg">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet,
-          dolore.
+        Explore Southeast Asia's finest tourist destinations with us. From stunning beaches to historic landmarks, our selection offers the best of the region's beauty and culture. Start your adventure now!
         </p>
       </div>
 

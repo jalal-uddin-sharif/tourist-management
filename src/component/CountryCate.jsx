@@ -25,7 +25,7 @@ const CountryCate = () => {
       <div className="lg:grid grid-cols-4 gap-8">
         {countries?.map((country) => (
           <Link key={country._id} to={`/country-spots/${country.country_name}`}>
-          <div className="card card-compact bg-base-100 shadow-xl">
+          <div className="card card-compact bg-base-100 shadow-xl border">
             <figure>
               <img src={country.image} alt="" />
             </figure>

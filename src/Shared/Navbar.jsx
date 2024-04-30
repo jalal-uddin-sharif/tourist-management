@@ -2,7 +2,9 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../Authentication/AuthProvider/AuthProvider";
 import { getAuth, signOut } from "firebase/auth";
-import profileImg from '../../src/assets/profile.png'
+import profileImg from "../../src/assets/profile.png";
+import logoImg from "../../src/assets/logo.png";
+import { Tooltip } from "react-tooltip";
 
 const Navbar = () => {
   const auth = getAuth();
@@ -23,10 +25,11 @@ const Navbar = () => {
     document.querySelector("html").setAttribute("data-theme", localTheme);
   }, [theme]);
 
-  const logOut = () =>{
+  const logOut = () => {
     signOut(auth)
-    .then(res =>console.log(res)).catch(err=>console.log(err))
-  }
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  };
   const Navlinks = (
     <>
       <li>
@@ -88,6 +91,7 @@ const Navbar = () => {
     </>
   );
 
+  console.log(user);
   return (
     <div className="bg-green-500 p-4 fixed w-full z-50 shadow-xl">
       <div className="navbar container mx-auto bg-base-100 rounded-xl">
@@ -116,7 +120,12 @@ const Navbar = () => {
               {Navlinks}
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">TourSpotter</a>
+          <div className="flex ">
+            <img className="h-[35px] w-[35px]" src={logoImg} alt="" />
+            <a className=" text-xl font-semibold items-center flex">
+              TourSpotter
+            </a>
+          </div>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 font-bold space-x-2">
@@ -167,68 +176,77 @@ const Navbar = () => {
               role="button"
               className="btn btn-ghost btn-circle avatar"
             >
-              <div className="w-10 rounded-full">
+              <div id="clickable" className="w-10 rounded-full ">
                 <img
                   alt="Tailwind CSS Navbar component"
                   src={user?.photoURL || profileImg}
                 />
+                <Tooltip anchorSelect="#clickable" clickable>
+                  <div className="">
+                    <h1 className="">Name: {user?.displayName}</h1>
+                    <hr className="my-3" />
+
+                    <ul className="space-y-2 text-lg">
+                      <li>
+                        <NavLink
+                          className={({ isActive, isPending }) =>
+                            isPending
+                              ? "pending"
+                              : isActive
+                              ? "text-success hover:text-warning focus:text-success bg-transparent focus:bg-transparent hover:bg-transparent"
+                              : "hover:text-warning"
+                          }
+                          to="/profile"
+                        >
+                          Profile
+                        </NavLink>
+                      </li>
+                      {user ? (
+                        <li>
+                          <a
+                            onClick={logOut}
+                            className="justify-between hover:text-warning "
+                          >
+                            Logout
+                          </a>
+                        </li>
+                      ) : (
+                        <>
+                          <li>
+                            <NavLink
+                              className={({ isActive, isPending }) =>
+                                isPending
+                                  ? "pending"
+                                  : isActive
+                                  ? "text-success hover:text-warning focus:text-success bg-transparent focus:bg-transparent hover:bg-transparent"
+                                  : "hover:text-warning"
+                              }
+                              to="/login"
+                            >
+                              Login
+                            </NavLink>
+                          </li>
+                          <li>
+                            <NavLink
+                              className={({ isActive, isPending }) =>
+                                isPending
+                                  ? "pending"
+                                  : isActive
+                                  ? "text-success hover:text-warning focus:text-success bg-transparent focus:bg-transparent hover:bg-transparent"
+                                  : "hover:text-warning"
+                              }
+                              to="/register"
+                            >
+                              Register
+                            </NavLink>
+                          </li>
+                        </>
+                      )}
+                    </ul>
+                  </div>
+                </Tooltip>
               </div>
             </div>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-            >
-              <li>
-              <NavLink
-                      className={({ isActive, isPending }) =>
-                        isPending
-                          ? "pending"
-                          : isActive
-                          ? "text-primary focus:text-primary bg-transparent focus:bg-transparent hover:bg-transparent"
-                          : ""
-                      }
-                      to="/profile"
-                    >
-                      Profile
-                    </NavLink>
-              </li>
-              {user ? (
-                <li>
-                  <a onClick={logOut} className="justify-between">Logout</a>
-                </li>
-              ) : (
-                <>
-                  <li>
-                    <NavLink
-                      className={({ isActive, isPending }) =>
-                        isPending
-                          ? "pending"
-                          : isActive
-                          ? "text-primary focus:text-primary bg-transparent focus:bg-transparent hover:bg-transparent"
-                          : ""
-                      }
-                      to="/login"
-                    >
-                      Login
-                    </NavLink>
-                  </li>
-                  <li>
-                    <NavLink
-                      className={({ isActive, isPending }) =>
-                        isPending
-                          ? "pending"
-                          : isActive
-                          ? "text-primary focus:text-primary bg-transparent focus:bg-transparent hover:bg-transparent"
-                          : ""
-                      }
-                      to="/register"
-                    >
-                      Register
-                    </NavLink>
-                  </li>
-                </>
-              )}
-            </ul>
           </div>
         </div>
       </div>
