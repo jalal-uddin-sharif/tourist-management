@@ -14,6 +14,7 @@ import Profile from "../Pages/Profile";
 import UpdateSpot from "../component/UpdateSpot";
 import Viewdetails from "../Pages/Viewdetails";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import Countries from "../component/Countries";
 
   export const router = createBrowserRouter([
     {
@@ -58,6 +59,10 @@ import PrivateRoute from "../PrivateRoute/PrivateRoute";
         {
             path: "/spots/:id",
             element: <Viewdetails/>
+        },
+        {
+            path: "/country-spots/:country_name",
+            element: <Countries/>
         },
         
       ]

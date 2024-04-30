@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import Swal from 'sweetalert2'
 import { AuthContext } from '../Authentication/AuthProvider/AuthProvider';
 import Loader from '../component/Loader';
@@ -8,12 +8,13 @@ const AddTouristsSpot = () => {
   const userName = `${user?.displayName}`
   const email = `${user?.email}`
   console.log(userName, email);
+  const [country, setCountry] = useState("")
   const handleForm = (e) => {
     e.preventDefault()
    const form = e.target;
    const image = form.image.value;
    const tourists_spot_name = form.tourists_spot_name.value;
-   const country_Name = form.country_Name.value;
+   const country_Name = country;
    const location = form.location.value;
    const average_cost = +form.average_cost.value;
    const seasonality = form.seasonality.value;
@@ -21,7 +22,7 @@ const AddTouristsSpot = () => {
    const totaVisitorsPerYear = +form.totaVisitorsPerYear.value;
    const short_description = form.short_description.value;
    const spotData = {image, tourists_spot_name, country_Name, location, average_cost,  seasonality, travel_time, totaVisitorsPerYear, short_description, userName, email}
-//    form.reset()
+   form.reset()
   console.log(spotData);
     fetch('https://tourist-server-five.vercel.app/spot-data',{
       method: 'POST',
@@ -46,6 +47,12 @@ const AddTouristsSpot = () => {
   if(loading){
     return <Loader/>
   }
+
+  //hangle country selector
+  const hangleCountry = (value) =>{
+    setCountry(value)
+  }
+  console.log(country);
   return (
     <div className="mt-4 container mx-auto min-h">
       <form onSubmit={handleForm}>
@@ -58,10 +65,15 @@ const AddTouristsSpot = () => {
             Tourist spot name :
             <input type="text" name="tourists_spot_name" className="grow" placeholder="Type touris spot name" />
           </label>
-          <label className="input input-bordered flex w-full items-center gap-2">
-            Country name :
-            <input type="text" name="country_Name" className="grow" placeholder="Type country name" />
-          </label>
+          <select onChange={(e)=>hangleCountry(e.target.value)} className="select select-primary w-full max-w-xs">
+          <option disabled selected>Select country</option>
+          <option value={"Bangladesh"}>Bangladesh</option>
+          <option value={"Thailand"}>Thailand</option>
+          <option value={"Indonesia"}>Indonesia</option>
+          <option value={"Malaysia"}>Malaysia</option>
+          <option value={"Vietnam"}>Vietnam</option>
+          <option value={"Cambodia"}>Cambodia</option>
+          </select>
           <label className="input input-bordered flex w-full items-center gap-2">
             Location
             <input type="text" name="location" className="grow" placeholder="Type location" />

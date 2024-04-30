@@ -9,13 +9,14 @@ const UpdateSpot = () => {
   const userName = `${user?.displayName}`
   const email = `${user?.email}`
   console.log(userName, email);
+  const [country, setCountry] = useState("")
   const [spot, setSpot] = useState(null);
   const handleForm = (e) => {
     e.preventDefault()
    const form = e.target;
    const image = form.image.value;
    const tourists_spot_name = form.tourists_spot_name.value;
-   const country_Name = form.country_Name.value;
+   const country_Name = country;
    const location = form.location.value;
    const average_cost = +form.average_cost.value;
    const seasonality = form.seasonality.value;
@@ -51,7 +52,11 @@ const UpdateSpot = () => {
     .then(res => res.json())
     .then(data => setSpot(data))
    },[])
-   console.log(spot);
+
+   //hangle country selector
+  const hangleCountry = (value) =>{
+    setCountry(value)
+  }
     return (
         <div className="mt-4 container mx-auto min-h">
         <form onSubmit={handleForm}>
@@ -64,10 +69,15 @@ const UpdateSpot = () => {
               Tourist spot name :
               <input type="text" name="tourists_spot_name" className="grow" placeholder="Type touris spot name" defaultValue={spot?.[0].tourists_spot_name}/>
             </label>
-            <label className="input input-bordered flex w-full items-center gap-2">
-              Country name :
-              <input type="text" name="country_Name" className="grow" placeholder="Type country name" defaultValue={spot?.[0].country_Name} />
-            </label>
+            <select onChange={(e)=>hangleCountry(e.target.value)} className="select select-primary w-full max-w-xs">
+          <option disabled selected>Select country</option>
+          <option value={"Bangladesh"}>Bangladesh</option>
+          <option value={"Thailand"}>Thailand</option>
+          <option value={"Indonesia"}>Indonesia</option>
+          <option value={"Malaysia"}>Malaysia</option>
+          <option value={"Vietnam"}>Vietnam</option>
+          <option value={"Cambodia"}>Cambodia</option>
+          </select>
             <label className="input input-bordered flex w-full items-center gap-2">
               Location
               <input type="text" name="location" className="grow" placeholder="Type location" defaultValue={spot?.[0].location} />

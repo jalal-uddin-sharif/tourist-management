@@ -36,7 +36,7 @@ const TouristsSpot = () => {
           <figure>
             <img
               src={spot.image}
-              alt="Shoes"
+              alt="loading"
             />
           </figure>
           <div className="card-body">
