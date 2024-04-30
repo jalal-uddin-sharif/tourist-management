@@ -65,6 +65,7 @@ const TouristsSpot = () => {
           ))
         }
       </div>
+      <hr className="my-24 w-4/6 mx-auto" />
     </div>
   );
 };

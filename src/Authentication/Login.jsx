@@ -48,7 +48,7 @@ const Login = () => {
       </h1>
       <hr className="w-5/12 mx-auto my-4" />
       <div className=" flex flex-col justify-center items-center">
-        <div className="w-2/5 bg-gray-100 p-6 rounded-xl">
+        <div className="lg:w-2/5 md:w-3/5 w-full bg-gray-100 p-6 rounded-xl">
           <form onSubmit={handleLogin}>
             <label
               htmlFor="email"
@@ -91,7 +91,7 @@ const Login = () => {
             <button type="submit" className="btn btn-primary w-full ">
               Login
             </button>
-            <div className="flex justify-between px-2 text-md font-normal">
+            <div className="lg:flex justify-between px-2 text-md font-normal">
               <h1 className="underline text-success">forgot password?</h1>
               <h1 className="text-black">haven't accout? <Link className="underline text-primary" to={"/register"} >register</Link> </h1>
             </div>

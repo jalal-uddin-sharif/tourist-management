@@ -1,9 +1,12 @@
 import { data } from "autoprefixer";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../Authentication/AuthProvider/AuthProvider";
+import Loader from "./Loader";
 
 const CountryCate = () => {
   const [countries, setCountries] = useState([]);
+  const {loading, setLoading} = useContext(AuthContext)
 
   useEffect(() => {
     fetch("https://tourist-server-five.vercel.app/country/")
@@ -13,6 +16,10 @@ const CountryCate = () => {
       });
   }, []);
   console.log(countries);
+
+  if(loading){
+    return <Loader/>
+  }
   return (
     <div className="container mx-auto ">
       <div className="border-l-2  border-success my-6 px-3">
@@ -22,7 +29,7 @@ const CountryCate = () => {
         </p>
       </div>
 
-      <div className="lg:grid grid-cols-4 gap-8">
+      <div className="grid lg:grid-cols-4 md:grid-cols-2 gap-8">
         {countries?.map((country) => (
           <Link key={country._id} to={`/country-spots/${country.country_name}`}>
           <div className="card card-compact bg-base-100 shadow-xl border">

@@ -58,7 +58,7 @@ import Countries from "../component/Countries";
         },
         {
             path: "/spots/:id",
-            element: <Viewdetails/>
+            element: <PrivateRoute><Viewdetails/></PrivateRoute>
         },
         {
             path: "/country-spots/:country_name",

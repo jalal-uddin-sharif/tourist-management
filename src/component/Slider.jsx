@@ -16,8 +16,8 @@ import { Typewriter } from "react-simple-typewriter";
 
 const Slider = () => {
   return (
-    <div className="container mx-auto mt-10  relative">
-       <div className=" absolute inset-0 flex flex-col  rounded-lg py-8 z-10 text-center px-32 bg-[#00000058]">
+    <div className="container mx-auto mt-10  relative"> 
+       <div className=" absolute inset-0 flex flex-col  rounded-lg py-8 z-10 text-center lg:px-32 px-4 bg-[#00000058]">
         <h1 className="text-5xl font-bold text-warning ">
           <Typewriter
           words={['Hello there!', 'Welcome to TourSpotter']}
@@ -41,12 +41,13 @@ const Slider = () => {
         scrollbar={{ draggable: true }}
 
       >
-        <SwiperSlide>
+        <SwiperSlide className="">
+          {/* <h1 className="absolute text-5xl bottom-0 left-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, earum?</h1> */}
           <img
-            
+            className="lg:h-[650px] md:h-[10px] w-full h-[12]"
             src={slider1}
             alt=""
-            style={{ width: "100%", height: "650px" }}
+            // style={{ width: "100%", height: "650px" }}
           />
         </SwiperSlide>
         <SwiperSlide>

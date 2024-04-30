@@ -43,14 +43,15 @@ if(loading){
         </select>
       </div>
       <hr className="container mx-auto my-4 border-accent border-2 rounded-t-full" />
-      <div className=" container lg:mx-auto mx-4 md:mx-auto lg:w-auto w-[90%] grid lg:grid-cols-2 grid-cols-1 gap-6">
+      <div className=" container lg:mx-auto mx-4 md:mx-auto lg:w-auto w-[90%] grid lg:grid-cols-2 md:grid-cols-2 grid-cols-1 gap-6">
+      
         {allSpot.map((spot) => (
           <div
             key={spot._id}
             className="bg-base-100 shadow-xl  border rounded-lg"
           >
             <div className="lg:grid grid-cols-2">
-              <figure className="py-4 pl-4">
+              <figure className="py-4 lg:pl-4 md:px-4">
                 <img
                   className="h-[244px] w-full rounded-lg"
                   src={

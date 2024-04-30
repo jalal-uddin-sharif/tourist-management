@@ -55,6 +55,9 @@ const AddTouristsSpot = () => {
   console.log(country);
   return (
     <div className="mt-4 container mx-auto min-h">
+      <div>
+        <h1 className='text-center text-3xl font-semibold my-6'>Add new torists spot</h1>
+      </div>
       <form onSubmit={handleForm}>
         <div className="grid lg:grid-cols-3 grid-cols-1 md:grid-cols-2  justify-between lg:gap-10 gap-2 lg:mx-auto md:mx-auto mx-4 form-control">
           <label className="input input-bordered flex w-full items-center gap-2">

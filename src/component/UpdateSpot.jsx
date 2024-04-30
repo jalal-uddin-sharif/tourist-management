@@ -59,6 +59,9 @@ const UpdateSpot = () => {
   }
     return (
         <div className="mt-4 container mx-auto min-h">
+          <div>
+        <h1 className='text-center text-3xl font-semibold my-6'>Update spots data</h1>
+      </div>
         <form onSubmit={handleForm}>
           <div className="grid lg:grid-cols-3 grid-cols-1 md:grid-cols-2  justify-between lg:gap-10 gap-2 lg:mx-auto md:mx-auto mx-4 form-control">
             <label className="input input-bordered flex w-full items-center gap-2">
@@ -108,7 +111,7 @@ const UpdateSpot = () => {
               ></textarea>{" "}
             </label>
           </div>
-          <div className="mt-6 flex justify-center gap-6">
+          <div className="mt-6 flex justify-center gap-6 flex-col lg:flex-row items-center">
             <button className="btn btn-primary btn-wide ">Update</button>
             <Link to={"/my-list"}>
             <button className="btn btn-link ">Back to mylist</button></Link>

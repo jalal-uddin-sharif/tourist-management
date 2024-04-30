@@ -51,7 +51,10 @@ const MyList = () => {
     return <Loader/>
   }
   return (
-    <div className="min-h my-10 mx-20">
+    <div className="min-h my-10 lg:mx-20">
+      <div>
+        <h1 className='text-center text-3xl font-semibold my-6'>My listed Spot data</h1>
+      </div>
       <div className="overflow-x-auto border">
         <table className="table">
           <thead>

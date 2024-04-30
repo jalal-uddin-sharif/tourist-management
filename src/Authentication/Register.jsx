@@ -71,7 +71,7 @@ const Register = () => {
       </h1>
       <hr className="w-5/12 mx-auto my-4" />
       <div className=" flex flex-col justify-center items-center">
-        <div className="w-2/5 bg-gray-100  p-6 rounded-xl">
+        <div className="lg:w-2/5 md:w-3/5 w-full bg-gray-100 p-6 rounded-xl">
         <form
           onSubmit={handleRegister}
           
