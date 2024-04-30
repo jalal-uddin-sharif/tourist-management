@@ -44,15 +44,15 @@ const Slider = () => {
         <SwiperSlide className="">
           {/* <h1 className="absolute text-5xl bottom-0 left-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, earum?</h1> */}
           <img
-            className="lg:h-[650px] md:h-[10px] w-full h-[12]"
+
             src={slider1}
             alt=""
-            // style={{ width: "100%", height: "650px" }}
+            style={{ width: "100%", height: "650px" }}
           />
         </SwiperSlide>
         <SwiperSlide>
           <img
-            
+  
             src={slider2}
             alt=""
             style={{ width: "100%", height: "650px" }}
