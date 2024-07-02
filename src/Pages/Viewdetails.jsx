@@ -29,7 +29,7 @@ if(loading){
             <div className='lg:grid grid-cols-2 my-8 gap-10 items-center'>
                 <div className=''>
                     <img src={spot?.[0].image || "https://i.ibb.co/vvCKvDd/Image-not-available.png"}
-                    className='rounded-t-lg border-2'
+                    className='rounded-t-lg border-2 w-full'
                     alt="" />
                     <h1 className='text-center p-2 font-medium text-lg border-success  rounded-b-lg border-b-4 border-l-4 border-r-4'>{spot?.[0].tourists_spot_name}</h1>
                 </div>

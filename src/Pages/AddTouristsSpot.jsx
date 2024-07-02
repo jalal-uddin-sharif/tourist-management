@@ -80,7 +80,7 @@ const AddTouristsSpot = () => {
               type="text"
               name="image"
               className="grow"
-              placeholder="Enter image url"
+              required placeholder="Enter image url"
             />
           </label>
           <label className="input input-bordered flex lg:w-full items-center gap-2">
@@ -89,10 +89,10 @@ const AddTouristsSpot = () => {
               type="text"
               name="tourists_spot_name"
               className="grow"
-              placeholder="Type touris spot name"
+              required placeholder="Type touris spot name"
             />
           </label>
-          <select
+          <select required
             onChange={(e) => hangleCountry(e.target.value)}
             className="select select-primary w-full max-w-xs"
           >
@@ -112,7 +112,7 @@ const AddTouristsSpot = () => {
               type="text"
               name="location"
               className="grow"
-              placeholder="Type location"
+              required placeholder="Type location"
             />
           </label>
           <label className="input input-bordered flex w-full items-center gap-2">
@@ -121,7 +121,7 @@ const AddTouristsSpot = () => {
               type="number"
               name="average_cost"
               className="grow"
-              placeholder="Type cost amount"
+              required placeholder="Type cost amount"
             />
           </label>
           <label className="input input-bordered flex w-full items-center gap-2">
@@ -130,7 +130,7 @@ const AddTouristsSpot = () => {
               type="text"
               name="seasonality"
               className="grow"
-              placeholder="Type season name"
+              required placeholder="Type season name"
             />
           </label>
           <label className="input input-bordered flex w-full items-center gap-2">
@@ -139,7 +139,7 @@ const AddTouristsSpot = () => {
               type="text"
               name="travel_time"
               className="grow"
-              placeholder="Type travel time"
+              required placeholder="Type travel time"
             />
           </label>
           <label className="input input-bordered flex w-full items-center gap-2">
@@ -148,7 +148,7 @@ const AddTouristsSpot = () => {
               type="number"
               name="totaVisitorsPerYear"
               className="grow"
-              placeholder="Type the visitor number"
+              required placeholder="Type the visitor number"
             />
           </label>
           <label className="flex w-full items-center gap-2">
@@ -156,7 +156,7 @@ const AddTouristsSpot = () => {
             <textarea
               name="short_description"
               className="textarea grow textarea-bordered"
-              placeholder="Write description"
+              required placeholder="Write description"
             ></textarea>{" "}
           </label>
         </div>

@@ -42,7 +42,6 @@ const Slider = () => {
 
       >
         <SwiperSlide className="">
-          {/* <h1 className="absolute text-5xl bottom-0 left-0">Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos, earum?</h1> */}
           <img
 
             src={slider1}
@@ -76,7 +75,6 @@ const Slider = () => {
         </SwiperSlide>
 
       </Swiper>
-      
     </div>
   );
 };

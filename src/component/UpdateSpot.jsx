@@ -98,11 +98,11 @@ const UpdateSpot = () => {
               defaultValue={spot?.[0].tourists_spot_name}
             />
           </label>
-          <select
+          <select defaultValue={spot?.[0]?.country_Name}
             onChange={(e) => hangleCountry(e.target.value)}
             className="select select-primary w-full max-w-xs"
           >
-            <option disabled selected>
+            <option disabled selected >
               Select country
             </option>
             <option value={"Bangladesh"}>Bangladesh</option>

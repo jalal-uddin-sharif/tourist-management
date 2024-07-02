@@ -1,9 +1,5 @@
 # TravelSpotter
 
-## category
-
-- Southeast Asia
-
 ## Description
 
 TravelSpotter is a web application designed to help travelers explore exciting destinations in Southeast Asia and beyond. Whether you're planning your next adventure or simply looking for inspiration, TravelSpotter offers a user-friendly platform to discover, share, and organize your travel experiences.
@@ -36,3 +32,12 @@ TravelSpotter is a web application designed to help travelers explore exciting d
 ## Feedback
 
 We would love to hear your feedback! If you have any suggestions, questions, or concerns, please don't hesitate to reach out to us at [itsharifofficial@gmail.com](mailto:itsharifofficial@gmail.com). Your feedback helps us improve TravelSpotter and provide a better experience for all users.
+
+## Clone this repo
+1. Open your terminal.
+2. Navigate to the directory where you want to clone the repository.
+3. cd path/to/your/directory
+4. git clone https://github.com/jalal-uddin-sharif/tourist-management.git
+5. cd react-tourist-web
+6. npm install
+7. npm run dev
